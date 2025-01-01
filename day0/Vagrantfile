@@ -1,0 +1,27 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu"
+  # config.vm.provision "shell", path: "scripts/common.sh"
+
+  config.vm.provider "vmware_fusion" do |v|
+    v.linked_clone = false
+  end
+
+  # define the master node
+  config.vm.define "master" do |master|
+    master.vm.hostname = "master"
+    master.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "4096"
+        v.vmx['cpus'] = 2
+    end
+  end
+
+  # define the worker node
+  config.vm.define "worker" do |worker|
+    worker.vm.hostname = "worker"
+    worker.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "2048"
+        v.vmx['cpus'] = 2
+    end
+  end
+
+end
