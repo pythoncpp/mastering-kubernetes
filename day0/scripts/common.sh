@@ -47,10 +47,10 @@ sudo systemctl start crio.service
 
 # add the kubernetes key and repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
-    gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |
-    tee /etc/apt/sources.list.d/kubernetes.list
+    sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # install kubelet, kubeadm, and kubectl latest version
 sudo apt-get update -y
